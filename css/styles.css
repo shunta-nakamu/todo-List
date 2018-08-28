@@ -1,0 +1,49 @@
+
+body{
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container{
+    width: 400px;
+    margin: auto;
+    background-color : aquamarine;
+
+}
+
+#app > h1 { 
+    font-size: 16px;
+    border-bottom: 1px solid blue;
+    padding: 10px 0;
+}
+
+#app li {
+    list-style: none;
+}
+
+#app  .delete {
+    font-size: 12px;
+    color: gray;
+    cursor: pointer;
+}
+
+.active {
+    text-decoration: line-through;
+}
+
+h1 > button{
+    float: right;
+}
+
+.input {
+    width: 200px;
+    margin: auto;
+    padding-bottom: 5px;
+}
+
+#app h1{
+    background-color: azure;
+    border-left: 1px solid blue;
+    border-top: 1px solid blue;
+    border-right: 1px solid blue;
+}

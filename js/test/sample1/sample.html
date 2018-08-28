@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/css/jquery.dataTables.css">
+    <!-- jQuery -->
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <div id="app">
+        <h1>仕事管理todoリスト
+            <span class="remain">{{remaining}} / {{todos.length}} </span>
+            <span class="deleteAll">
+                <button @click="purge">全件削除</button>
+                <button>すべて選択</button>
+            </span>
+        </h1>
+        <div v-show="todos.length">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>タスク名</th>
+                        <th>現在時刻</th>
+                        <th>所要時間</th>
+                        <th>削除</th>
+                        <th>メモ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(todo, index) in todos">
+                        <td>
+                            <span v-bind:class="{active: todo.isDone}">
+                                <input type="checkbox" v-model="todo.isDone"> {{index + 1}}. &nbsp;{{todo.type}}</span>
+                        </td>
+                        <td> {{todo.Hour}}:{{todo.Minute}} </td>
+                        <td>{{todo.workingTime}}分</td>
+                        <td>
+                            <span @click="deleteItem" class="delete">[x]</span>
+                        </td>
+                        <td id="modalWindow">{{todo.memo}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p v-show="!todos.length">表示するものがありません</p>
+
+        <div id="add">
+            <form @submit.prevent="addItem">
+
+                <table id="input" class="table">
+                    <tr>
+                        <td>
+                            <label>タスク名：</label>
+                        </td>
+                        <td>
+                            <span>
+                                <input type="text" v-model="newItem">
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>メモ：</label>
+                        </td>
+                        <td>
+                            <span>
+                                <input type="text" v-model="newMemo" width="100px" item-height="100px">
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>所要時間：</label>
+                        </td>
+                        <td>
+                            <span>
+                                <select v-model="time">
+                                    <option>10</option>
+                                    <option>20</option>
+                                    <option>30</option>
+                                    <option>40</option>
+                                    <option>50</option>
+                                    <option>60</option>
+                                </select>
+                            </span> 分
+                            <br>
+                        </td>
+                    </tr>
+                </table>
+                <span>
+                    <input type="submit" value="タスクの追加">
+                </span>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+    <script type="text/javascript" src="js/sub.js"></script>
+</body>
+
+</html>
